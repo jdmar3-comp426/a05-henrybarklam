@@ -1,0 +1,99 @@
+body{
+    /* background-color:#000000; */
+    background-color: white;
+}
+
+a:link{
+    color: pink;
+    background-color: transparent;
+    text-decoration: rgb(192, 47, 47);
+    padding: 25px;
+    text-align: center;
+}
+
+a:visited{
+    color: black;
+    background-color: transparent;
+    width: 75%;
+
+}
+a:hover{
+    color: cyan;
+    background-color: transparent;
+}
+
+.hierarchy a{
+    color: inherit;
+}
+
+
+h1{
+    border-style: dashed;
+    color: black;
+    text-align: center;
+    font:bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: #40e0d0;
+}
+
+h2{
+    color: black ;
+    text-align: center;
+    font:bolder;
+}
+
+h3{
+    color: black;
+    text-align: center;
+    font:normal;
+}
+
+h4{
+    color: black;
+    text-align: center;
+    font:bolder;
+}
+h5{
+    color:black;
+    text-align: center;
+    font:italic;
+}
+
+h6{
+    color:black;
+    text-align: center;
+    font:x-large;
+}
+
+p {
+    color: black;
+    background-color: #ffc0cb;
+}
+
+.example{
+    background-color:rgb(125, 45, 178);
+    border-style: dotted;
+}
+
+p.exqu{
+    text-shadow: 3px 5px 3px;
+}
+
+
+
+img{
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    border:4px black
+}
+
+#firstParagraph{
+    border-style: groove;
+    color: black;
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100px;
+    width: 300px;
+}

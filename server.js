@@ -5,6 +5,7 @@ var app = express();
 var db = require("./database.js");
 // Require md5 MODULE
 var md5 = require("md5");
+const cors = require("cors");
 
 //Require a middleware extension for express
 var bodyParser = require("body-parser");
@@ -12,6 +13,8 @@ var bodyParser = require("body-parser");
 // Make Express use its own built-in body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors());
 
 // Set server port"id":id, "user": user , "pass": pass
 var HTTP_PORT = 5000;
@@ -48,7 +51,7 @@ app.get("/app/user/:id", (req, res) => {
 
 //Could be an issue here - if so change back to /app/new/
 app.post("/app/new/", (req, res) => {
-	const getOne = db.prepare("INSERT INTO userinfo (user,pass) VALUES (?,?)").run(req.body.user, md5(req.body.pass));
+	const getOne = db.prepare("INSERT INTO userinfo (user,pass, email) VALUES (?,?, ?)").run(req.body.user,req.body.email, md5(req.body.pass));
 	// res.json({"id":req.params.id, "user": user , "pass": pass});
 	getOne["pass"] = md5(req.body.pass);
 	res.status(201).json({"message": `${getOne["changes"]} record created: ID ${getOne["lastInsertRowid"]} (201)`});
@@ -57,7 +60,7 @@ app.post("/app/new/", (req, res) => {
 
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.patch("/app/update/user/:id", (req, res) => {
-	const getOne = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?").run(req.body.user, md5(req.body.pass), req.params.id);
+	const getOne = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass), email = COALESCE(?,email) WHERE id = ?").run(req.body.user, md5(req.body.pass),req.body.email, req.params.id);
 	// res.json({"message":"OK (200)"});
 	res.status(405).json({"message": `${getOne["changes"]} record updated: ID ${req.params.id} (200)`});
 	return
